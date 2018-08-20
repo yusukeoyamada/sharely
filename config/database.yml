@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  template: template1
+
+development:
+  <<: *default
+  database: sharely_development
+
+test:
+  <<: *default
+  database: sharely_test
+
+production:
+  <<: *default
+  database: sharely_production
+  username: sharely
+  password: <%= ENV['SHARELY_DATABASE_PASSWORD'] %>
