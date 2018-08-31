@@ -1,0 +1,5 @@
+<h4><%= @user.name %>のページ</h4>
+<p>メールアドレス: <%= @user.email %></p>
+<p>
+  <%= link_to 'ユーザー情報を編集', edit_user_path(@user.id) %>
+</p>
