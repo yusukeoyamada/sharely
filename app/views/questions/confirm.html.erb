@@ -3,12 +3,12 @@
 <%= form_with(model: @question, url: questions_path, local: true) do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
-  <%= hidden_field_tag :"cache[image]",@question.image.cache_name %>
+  <%= hidden_field_tag :"cache[image]", @question.image.cache_name %>
 
   <p>タイトル:<%= @question.title %></p>
   <p>本文:<%= @question.content %></p>
   <p>
-    <%= image_tag(@question.image.url) %>
+    <%= image_tag(@question.image) %>
   </p>
   <%= form.submit  "投稿する" %>
 <% end %>

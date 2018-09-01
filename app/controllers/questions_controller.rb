@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @favorite = current_user.favorites.find_by(question_id: @question.id)
+    #  @favorite = current_user.favorites.find_by(question_id: @question.id)
   end
 
   def new

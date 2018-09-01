@@ -2,7 +2,7 @@
 
 <p>投稿者名: <%= @question.user.name %></p>
 <p>
-  <%= image_tag @question.image %>
+  <%= image_tag(@question.image) %>
 </p>
 <p>タイトル: <%= @question.title %></p>
 <p>内容: <%= @question.content %></p>
@@ -10,18 +10,6 @@
 <% if @question.user == current_user %>
   <p><%= link_to '編集', edit_question_path(@question.id) %></p>
   <p><%= link_to '削除', question_path(@question.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></p>
-<% end %>
-
-<% unless @question.user == current_user %>
-  <% if @favorite.present? %>
-    <div>
-      <%= link_to 'お気に入り解除する', favorite_path(question_id: @question.id), method: :delete %>
-    </div>
-  <% else %>
-    <div>
-      <%= link_to 'お気に入りする', favorites_path(question_id: @question.id), method: :post %>
-    </div>
-  <% end %>
 <% end %>
 
 <br>
