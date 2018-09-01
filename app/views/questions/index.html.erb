@@ -7,11 +7,13 @@
   </tr>
 
   <% @questions.each do |question| %>
-    <tr>
-      <td><%= question.user.name%></td>
-      <td><%= link_to question.title , question_path(question.id) %></td>
-    </tr>
+      <tr>
+        <td><%= question.user.name%></td>
+        <td><%= link_to question.title, question_path(question.id) %></td>
+      </tr>
   <% end %>
 </table>
+
 <br>
+
 <%= link_to '投稿する', new_question_path %>
