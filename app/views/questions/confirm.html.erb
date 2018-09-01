@@ -8,9 +8,9 @@
   <p>タイトル:<%= @question.title %></p>
   <p>本文:<%= @question.content %></p>
   <p>
-    <%= image_tag(@question.image) %>
+    <%= image_tag(@question.image) if @question.image.present? %>
   </p>
-  <%= form.submit  "投稿する" %>
+  <%= form.submit  "質問する" %>
 <% end %>
 
 <%= form_with(model: @question, url: new_question_path, local: true, method: 'get') do |form| %>

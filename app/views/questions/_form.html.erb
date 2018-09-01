@@ -25,10 +25,10 @@
       <%= image_tag(@question.image) if @question.image.present? %>
       <%= form.hidden_field :image_cache %>
     </div>
-    <%= form.submit "投稿" %>
+    <%= form.submit "質問" %>
   <% end %>
 
   <br>
 
-  <%= link_to "投稿一覧画面にもどる", questions_path %>
+  <%= link_to "質問一覧画面にもどる", questions_path %>
 </div>
