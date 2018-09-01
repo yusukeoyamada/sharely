@@ -19,7 +19,7 @@ class QuestionsController < ApplicationController
   def new
     if params[:back]
       @question = Question.new(question_params)
-      @question.image.retrieve_from_cache! params[:cache][:image]
+      @question.image.retrieve_from_cache! params[:cache][:image] if params[:cache][:image].present?
     else
       @question = Question.new
     end
@@ -27,12 +27,12 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    redirect_to questions_path, notice:"投稿を削除しました！"
+    redirect_to questions_path, notice:"質問を削除しました！"
   end
 
   def update
     if @question.update(question_params)
-      redirect_to questions_path, notice: "投稿を編集しました！"
+      redirect_to questions_path, notice: "質問を編集しました！"
     else
       render 'edit'
     end
@@ -43,7 +43,7 @@ class QuestionsController < ApplicationController
     @question.user_id = current_user.id
     @question.image.retrieve_from_cache!  params[:cache][:image]
     if @question.save
-      redirect_to questions_path, notice: "投稿しました！"
+      redirect_to questions_path, notice: "質問しました！"
     else
       render 'new'
     end
