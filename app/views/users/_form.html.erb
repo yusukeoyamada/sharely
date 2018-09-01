@@ -1,9 +1,11 @@
 <%= form_with(model: @user, local: true,) do |form| %>
-  <div id="error_explanation">
-    <% @user.errors.full_messages.each do |message| %>
-      <%= message %>
-    <% end %>
-  </div>
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <% @user.errors.full_messages.each do |message| %>
+        <%= message %>
+      <% end %>
+    </div>
+  <% end %>
 
   <%= form.label :name %>
   <%= form.text_field :name %>
