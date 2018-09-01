@@ -1,0 +1,21 @@
+<h3>以下の内容で、送信する。</h3>
+
+<%= form_with(model: @question, url: questions_path, local: true) do |form| %>
+  <%= form.hidden_field :title %>
+  <%= form.hidden_field :content %>
+  <%= hidden_field_tag :"cache[image]",@question.image.cache_name %>
+
+  <p>タイトル:<%= @question.title %></p>
+  <p>本文:<%= @question.content %></p>
+  <p>
+    <%= image_tag(@question.image.url) %>
+  </p>
+  <%= form.submit  "投稿する" %>
+<% end %>
+
+<%= form_with(model: @question, url: new_question_path, local: true, method: 'get') do |form| %>
+  <%= form.hidden_field :title %>
+  <%= form.hidden_field :content %>
+  <%= hidden_field_tag :"cache[image]", @question.image.cache_name %>
+  <%= form.submit "戻る", name: 'back' %>
+<% end %>

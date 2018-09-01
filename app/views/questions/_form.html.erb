@@ -1,0 +1,30 @@
+<div class="container">
+  <%= form_with(model: @question, local: true, url: choose_new_or_edit) do |form| %>
+    <div id="error_explanation">
+      <h2><%= @question.errors.count %>件のエラーがあります。</h2>
+      <ul>
+        <% @question.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div>
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
+    <div>
+      <%= form.label :content %>
+      <%= form.text_field :content %>
+    </div>
+    <div>
+      <p><%= form.label :image %></p>
+      <p><%= form.file_field :image, id: :@question_image %></p>
+      <%= image_tag(@question.image.url) if @question.image.url %>
+      <%= form.hidden_field :image_cache %>
+    </div>
+    <%= form.submit %>
+  <% end %>
+
+  <%= link_to "投稿一覧画面にもどる", questions_path %>
+</div>
