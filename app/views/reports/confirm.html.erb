@@ -1,0 +1,21 @@
+<h3>以下の内容で、投稿しますか？</h3>
+
+<%= form_with(model: @report, url: reports_path, local: true) do |form| %>
+  <%= form.hidden_field :title %>
+  <%= form.hidden_field :content %>
+  <%= hidden_field_tag :"cache[image]", @report.image.cache_name %>
+
+  <p>タイトル:<%= @report.title %></p>
+  <p>本文:<%= @report.content %></p>
+  <p>
+    <%= image_tag(@report.image) if @report.image.present? %>
+  </p>
+  <%= form.submit  "投稿する" %>
+<% end %>
+
+<%= form_with(model: @report, url: new_report_path, local: true, method: 'get') do |form| %>
+  <%= form.hidden_field :title %>
+  <%= form.hidden_field :content %>
+  <%= hidden_field_tag :"cache[image]", @report.image.cache_name %>
+  <%= form.submit "戻る", name: 'back' %>
+<% end %>

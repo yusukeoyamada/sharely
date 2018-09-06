@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   #ユーザーによる記事投稿関係
+  resources :reports do
+    collection do
+      post :confirm
+    end
+  end
+
+  #ユーザーによる質問関係
   resources :questions do
     collection do
       post :confirm
