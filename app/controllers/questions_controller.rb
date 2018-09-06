@@ -13,6 +13,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @answers = @question.answers
+    @answer = @question.answers.build
     #  @favorite = current_user.favorites.find_by(question_id: @question.id)
   end
 
@@ -41,7 +43,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.user_id = current_user.id
-    @question.image.retrieve_from_cache!  params[:cache][:image]
+    @question.image.retrieve_from_cache!  params[:cache][:image] if params[:cache][:image].present?
     if @question.save
       redirect_to questions_path, notice: "質問しました！"
     else

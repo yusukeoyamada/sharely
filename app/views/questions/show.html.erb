@@ -1,4 +1,4 @@
-<h1>質問詳細画面</h1>
+<h1>質問画面</h1>
 
 <p>質問者名: <%= @question.user.name %></p>
 <p>
@@ -11,6 +11,17 @@
   <p><%= link_to '編集', edit_question_path(@question.id) %></p>
   <p><%= link_to '削除', question_path(@question.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></p>
 <% end %>
+
+<br>
+
+<p>回答一覧</p>
+<div id="answers_area">
+  <!-- 回答一覧を質問の詳細ページに表示するためのrender -->
+  <%= render partial: 'answers/index', locals: { answers: @answers, question: @question } %>
+</div>
+
+<!-- 回答入力欄を質問の詳細ページに表示するためのrender -->
+<%= render partial: 'answers/form', locals: { answer: @answer, question: @question } %>
 
 <br>
 

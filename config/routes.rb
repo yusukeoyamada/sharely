@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   #ユーザーによる質問関係
   resources :questions do
+    resources :answers
+
     collection do
       post :confirm
     end
