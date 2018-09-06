@@ -1,0 +1,28 @@
+<h1>お問い合わせ</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>メールアドレス</th>
+      <th>お問い合わせ内容</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contacts.each do |contact| %>
+      <tr>
+        <td><%= contact.name %></td>
+        <td><%= contact.email %></td>
+        <td><%= contact.content %></td>
+        <td><%= link_to "詳細", contact %></td>
+        <td><%= link_to "編集", edit_contact_path(contact) %></td>
+        <td><%= link_to "削除", contact, method: :delete, data: { confirm: "本当に削除しても宜しいでしょうか" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "新規お問い合わせ", new_contact_path %>

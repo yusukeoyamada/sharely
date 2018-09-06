@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
-  #ユーザーによる記事投稿関係
+  # お問い合わせ関係
+  resources :contacts
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
+  # ユーザーによる記事投稿関係
   resources :reports do
     collection do
       post :confirm
     end
   end
 
-  #ユーザーによる質問関係
+  # ユーザーによる質問関係
   resources :questions do
     resources :answers
 
@@ -15,7 +20,7 @@ Rails.application.routes.draw do
     end
   end
 
-  #ログイン関係
+  # ログイン関係
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create, :show, :edit, :update]
 end
