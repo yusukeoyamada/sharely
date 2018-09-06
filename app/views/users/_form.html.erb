@@ -1,5 +1,5 @@
 <%= form_with(model: @user, local: true,) do |form| %>
-  <% if @question.errors.any? %>
+  <% if @user.errors.any? %>
     <div id="error_explanation">
       <% @user.errors.full_messages.each do |message| %>
         <%= message %>
