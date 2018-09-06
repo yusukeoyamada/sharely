@@ -1,0 +1,21 @@
+<%= form_with(model: [question, answer]) do |form| %>
+  <% if answer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= answer.errors.count %>件のエラーがあります。</h2>
+      <ul>
+        <% answer.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div>
+    <%= form.submit "回答する"%>
+  </div>
+<% end %>

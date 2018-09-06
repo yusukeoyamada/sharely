@@ -1,5 +1,5 @@
 module QuestionsHelper
-  def choose_new_or_edit
+  def choose_new_or_edit_question
     if action_name == 'new' || action_name == 'confirm'
       confirm_questions_path
     elsif action_name == 'edit'

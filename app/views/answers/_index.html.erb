@@ -1,0 +1,9 @@
+<ul>
+  <% answers.each do |answer| %>
+    <% if answer.id.present? %>
+      <li>
+        <p><%= answer.content %></p>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
