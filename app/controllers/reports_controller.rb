@@ -13,7 +13,7 @@ class ReportsController < ApplicationController
   end
 
   def show
-    # @favorite = current_user.favorites.find_by(report_id: @report.id)
+    @fav_rpts = current_user.fav_rpts.find_by(report_id: @report.id)
   end
 
   def new
@@ -41,7 +41,8 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(report_params)
     @report.user_id = current_user.id
-    @report.image.retrieve_from_cache!  params[:cache][:image]
+    @report.image.retrieve_from_cache!  params[:cache][:image] if params[:cache][:image].present?
+  else
     if @report.save
       redirect_to reports_path, notice: "質問しました！"
     else

@@ -12,6 +12,18 @@
   <p><%= link_to '削除', report_path(@report.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></p>
 <% end %>
 
+<% unless @report.user_id == current_user.id %>
+  <% if @fav_rpts.present? %>
+    <%= link_to fav_rpt_path(id: @fav_rpts.id), method: :delete do %>
+      <span class="fa fa-heart like-btn-unlike"></span>
+    <% end %>
+  <% else %>
+    <%= link_to fav_rpts_path(report_id: @report.id), method: :post do %>
+      <span class="fa fa-heart like-btn"></span>
+    <% end %>
+  <% end %>
+<% end %>
+
 <br>
 
 <%= link_to "投稿一覧画面にもどる", reports_path %>

@@ -12,6 +12,18 @@
   <p><%= link_to '削除', question_path(@question.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></p>
 <% end %>
 
+<% unless @question.user_id == current_user.id %>
+  <% if @fav_ques.present? %>
+    <%= link_to fav_que_path(id: @fav_ques.id), method: :delete do %>
+      <span class="fa fa-heart like-btn-unlike"></span>
+    <% end %>
+  <% else %>
+    <%= link_to fav_ques_path(question_id: @question.id), method: :post do %>
+      <span class="fa fa-heart like-btn"></span>
+    <% end %>
+  <% end %>
+<% end %>
+
 <br>
 
 <p>回答一覧</p>

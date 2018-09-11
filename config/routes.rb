@@ -23,4 +23,8 @@ Rails.application.routes.draw do
   # ログイン関係
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create, :show, :edit, :update]
+
+  # お気に入り機能
+  resources :fav_ques, only: [:create, :destroy]
+  resources :fav_rpts, only: [:create, :destroy]
 end

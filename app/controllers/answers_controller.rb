@@ -3,6 +3,7 @@ class AnswersController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
     @answer = @question.answers.build(answer_params)
+    @answer.user_id = current_user.id
 
     respond_to do |format|
       if @answer.save

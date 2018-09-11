@@ -5,6 +5,7 @@ class Question < ApplicationRecord
 
   belongs_to :user
   has_many :answers, dependent: :destroy
+  has_many :fav_ques, dependent: :destroy
 
   mount_uploader :image, QuestionImageUploader
 end
