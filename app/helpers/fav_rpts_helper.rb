@@ -1,0 +1,2 @@
+module FavRptsHelper
+end

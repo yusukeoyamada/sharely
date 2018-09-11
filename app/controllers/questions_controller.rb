@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
   def show
     @answers = @question.answers
     @answer = @question.answers.build
-    #  @favorite = current_user.favorites.find_by(question_id: @question.id)
+    @fav_ques = current_user.fav_ques.find_by(question_id: @question.id)
   end
 
   def new
