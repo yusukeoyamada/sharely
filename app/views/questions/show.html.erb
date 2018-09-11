@@ -14,9 +14,13 @@
 
 <% unless @question.user_id == current_user.id %>
   <% if @fav_ques.present? %>
-    <%= link_to 'お気に入り解除する', fav_que_path(id: @fav_ques.id), method: :delete, class: 'btn btn-danger' %>
+    <%= link_to fav_que_path(id: @fav_ques.id), method: :delete do %>
+      <span class="fa fa-heart like-btn-unlike"></span>
+    <% end %>
   <% else %>
-    <%= link_to 'お気に入りする', fav_ques_path(question_id: @question.id), method: :post, class: 'btn btn-primary' %>
+    <%= link_to fav_ques_path(question_id: @question.id), method: :post do %>
+      <span class="fa fa-heart like-btn"></span>
+    <% end %>
   <% end %>
 <% end %>
 
