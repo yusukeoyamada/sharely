@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
-  before_action :login_check, only: [:new, :show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:confirm, :show, :new, :create, :edit, :update, :destroy]
 
   def confirm
     @report = Report.new(report_params)

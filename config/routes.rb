@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  root :to =>'homes#index'
+
   # お問い合わせ関係
   resources :contacts
 
@@ -21,8 +24,12 @@ Rails.application.routes.draw do
   end
 
   # ログイン関係
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create, :show, :edit, :update]
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+    omniauth_callbacks: "users/omniauth_callbacks"
+  }
+
+  resources :users, :only => [:index, :show]
 
   # お気に入り機能
   resources :fav_ques, only: [:create, :destroy]

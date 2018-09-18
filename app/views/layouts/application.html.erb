@@ -11,8 +11,24 @@
   </head>
 
   <body>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
+
+    <% if user_signed_in? %>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      <%= link_to "マイページ", user_path(current_user.id) %>
+      <%= link_to "投稿一覧", reports_path %>
+      <%= link_to "質問一覧", questions_path %>
+    <% else %>
+      <%= link_to "新規登録", new_user_registration_path %>
+      <%= link_to "ログイン", new_user_session_path %>
+      <%= link_to "投稿一覧", reports_path %>
+      <%= link_to "質問一覧", questions_path %>
+    <% end %>
+
+    <% if notice %>
+      <p class="alert alert-notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-error"><%= alert %></p>
     <% end %>
 
     <%= yield %>
