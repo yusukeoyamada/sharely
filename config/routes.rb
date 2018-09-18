@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root :to =>'homes#index'
 
   # お問い合わせ関係
@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"
   }
+
+  resources :users, :only => [:index, :show]
 
   # お気に入り機能
   resources :fav_ques, only: [:create, :destroy]
