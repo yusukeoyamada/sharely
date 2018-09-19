@@ -5,6 +5,7 @@
   <%= image_tag(@report.image) %>
 </p>
 <p>タイトル: <%= @report.title %></p>
+<p>関連タグ:<%= render 'reports/tag_list', tag_list: @report.relation_word_list %></p>
 <p>内容: <%= @report.content %></p>
 
 <% if @report.user == current_user %>

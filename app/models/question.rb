@@ -8,4 +8,6 @@ class Question < ApplicationRecord
   has_many :fav_ques, dependent: :destroy
 
   mount_uploader :image, QuestionImageUploader
+
+  acts_as_ordered_taggable_on :relation_words
 end

@@ -3,10 +3,12 @@
 <%= form_with(model: @report, url: reports_path, local: true) do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
+  <%= hidden_field_tag 'report[relation_word_list]', @report.relation_word_list.join(',') %>
   <%= hidden_field_tag :"cache[image]", @report.image.cache_name %>
 
   <p>タイトル:<%= @report.title %></p>
   <p>本文:<%= @report.content %></p>
+  <p>関連タグ:<%= render 'reports/tag_list', tag_list: @report.relation_word_list %></p>
   <p>
     <%= image_tag(@report.image) if @report.image.present? %>
   </p>
@@ -16,6 +18,7 @@
 <%= form_with(model: @report, url: new_report_path, local: true, method: 'get') do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
+  <%= hidden_field_tag 'report[relation_word_list]', @report.relation_word_list.join(',') %>
   <%= hidden_field_tag :"cache[image]", @report.image.cache_name %>
   <%= form.submit "戻る", name: 'back' %>
 <% end %>

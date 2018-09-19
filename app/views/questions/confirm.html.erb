@@ -3,9 +3,11 @@
 <%= form_with(model: @question, url: questions_path, local: true) do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
+  <%= hidden_field_tag 'question[relation_word_list]', @question.relation_word_list.join(',') %>
   <%= hidden_field_tag :"cache[image]", @question.image.cache_name %>
 
   <p>タイトル:<%= @question.title %></p>
+  <p>関連タグ:<%= render 'questions/tag_list', tag_list: @question.relation_word_list %></p>
   <p>本文:<%= @question.content %></p>
   <p>
     <%= image_tag(@question.image) if @question.image.present? %>
@@ -16,6 +18,7 @@
 <%= form_with(model: @question, url: new_question_path, local: true, method: 'get') do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
+  <%= hidden_field_tag 'question[relation_word_list]', @question.relation_word_list.join(',') %>
   <%= hidden_field_tag :"cache[image]", @question.image.cache_name %>
   <%= form.submit "戻る", name: 'back' %>
 <% end %>

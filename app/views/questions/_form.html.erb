@@ -16,6 +16,10 @@
       <%= form.text_field :title %>
     </div>
     <div>
+      <%= form.label :relation_words, "関連タグ" %><br>
+      <%= text_field_tag 'question[relation_word_list]', @question.relation_word_list.join(','), "data-role" => "tagsinput" %>
+    </div>
+    <div>
       <%= form.label :content %>
       <%= form.text_field :content %>
     </div>

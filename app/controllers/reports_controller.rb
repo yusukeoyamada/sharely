@@ -53,7 +53,7 @@ class ReportsController < ApplicationController
   private
     def report_params
       params.require(:report).permit(:title,
-        :content, :image, :image_cache)
+        :content, :image, :image_cache, :relation_word_list)
     end
 
     def set_report

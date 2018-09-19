@@ -54,7 +54,7 @@ class QuestionsController < ApplicationController
   private
     def question_params
       params.require(:question).permit(:title,
-        :content, :image, :image_cache)
+        :content, :image, :image_cache, :relation_word_list)
     end
 
     def set_question

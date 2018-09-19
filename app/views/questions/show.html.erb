@@ -5,6 +5,7 @@
   <%= image_tag(@question.image) %>
 </p>
 <p>タイトル: <%= @question.title %></p>
+<p>関連タグ:<%= render 'questions/tag_list', tag_list: @question.relation_word_list %></p>
 <p>内容: <%= @question.content %></p>
 
 <% if @question.user == current_user %>

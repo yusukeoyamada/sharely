@@ -8,4 +8,6 @@ class Report < ApplicationRecord
   has_many :fav_rpts, dependent: :destroy
 
   mount_uploader :image, ReportImageUploader
+
+  acts_as_ordered_taggable_on :relation_words
 end
