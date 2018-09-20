@@ -1,3 +1,6 @@
+<p>
+  <%= image_tag(@user.icon_image) if @user.icon_image.present? %>
+</p>
 <h4><%= @user.name %>のページ</h4>
 <p>メールアドレス: <%= @user.email %></p>
 <p>

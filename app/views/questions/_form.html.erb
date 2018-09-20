@@ -25,7 +25,7 @@
     </div>
     <div>
       <p><%= form.label :image %></p>
-      <p><%= form.file_field :image, id: :@question_image %></p>
+      <p><%= form.file_field :image, id: :question_image %></p>
       <%= image_tag(@question.image) if @question.image.present? %>
       <%= form.hidden_field :image_cache %>
     </div>

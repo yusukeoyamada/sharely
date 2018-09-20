@@ -1,4 +1,4 @@
-class ReportImageUploader < CarrierWave::Uploader::Base
+class UserImageUploader < CarrierWave::Uploader::Base
 
   process :resize_to_limit => [300, 300]
 

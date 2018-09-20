@@ -67,4 +67,6 @@ class User < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :fav_ques, dependent: :destroy
   has_many :fav_rpts, dependent: :destroy
+
+  mount_uploader :icon_image, UserImageUploader
 end
