@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -59,6 +60,14 @@ class User < ApplicationRecord
 
   def self.dummy_email(auth)
     "#{auth.uid}-#{auth.provider}@example.com"
+  end
+
+  # ユーザーの貢献度の計算の為のメソッド
+  def calculate_point
+    number_of_questions = Question.where(user_id: self.id).count
+    number_of_answers = Answer.where(user_id: self.id).count
+    number_of_reports = Report.where(user_id: self.id).count
+    user_points = number_of_reports * 30 + number_of_answers * 30 + number_of_questions * 10
   end
 
   validates_uniqueness_of :name

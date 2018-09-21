@@ -3,6 +3,7 @@
 </p>
 <h4><%= @user.name %>のページ</h4>
 <p>メールアドレス: <%= @user.email %></p>
+<p>ユーザー貢献度: <%= @user_points %> points</p>
 <p>
   <%= link_to 'ユーザー情報を編集', edit_user_registration_path(@user.id) %>
 </p>
