@@ -74,6 +74,7 @@ class User < ApplicationRecord
   validates_presence_of :name
 
   has_many :questions, dependent: :destroy
+  has_many :reports, dependent: :destroy
   has_many :fav_ques, dependent: :destroy
   has_many :fav_rpts, dependent: :destroy
 

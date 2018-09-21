@@ -14,16 +14,18 @@
   <li><%= link_to '回答した質問', "/users/#{@user.id}/answers" %></li>
 </ul>
 
-<% @user.reports.each do |report| %>
-  <div>
-    <div>
-      <!-- <%= image_tag(@user.icon_image) if @user.icon_image.present? %> -->
-    </div>
+<% if @answers != nil %>
+  <% @answers.each do |answer| %>
     <div>
       <div>
-        <%= link_to report.user.name, "/users/#{report.user.id}" %>
+        <!-- <%= image_tag(@user.icon_image) if @user.icon_image.present? %> -->
       </div>
-      <%= link_to report.content, "/reports/#{report.id}" %>
+      <div>
+        <div>
+          <%= link_to answer.question.user.name, "/users/#{answer.question.user.id}" %>
+        </div>
+        <%= link_to answer.question.content, "/questions/#{answer.question.id}" %>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>

@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   }
 
   resources :users, :only => [:index, :show]
+  get "users/:id/questions" => "users#questions"
+  get "users/:id/answers" => "users#answers"
 
   # お気に入り機能
   resources :fav_ques, only: [:create, :destroy]
