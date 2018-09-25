@@ -1,39 +1,52 @@
-<h2>Sign up</h2>
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-md-7 mx-auto">
+      <h2>新規登録</h2><hr><hr>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+        <div class="field">
+          <%= f.label :name %><br />
+          <%= f.text_field :name, autofocus: true %>
+        </div><hr>
+
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div><hr>
+
+        <div class="field">
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </div><hr>
+
+        <div class="field">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div><hr>
+
+        <div class="field">
+          <p><%= f.label :icon_image, "アイコン画像" %></p>
+          <p><%= f.file_field :icon_image, id: :user_icon_image %></p>
+        </div><hr>
+
+        <div class="actions">
+          <%= f.submit "新規登録" %>
+        </div><hr>
+      <% end %>
+
+      <span class="fab fa-google"></span>
+      <%= link_to 'Sign in with Google', user_google_omniauth_authorize_path, class: "btn btn-social-iconl btn-google" %>
+      <br><span class="fab fa-facebook"></span>
+      <%= link_to 'Sign in with Facebook', user_facebook_omniauth_authorize_path, class: "btn btn-social-icon btn-facebook" %>
+      <br><span class="fab fa-github"></span>
+      <%= link_to 'Sign in with GitHub', user_github_omniauth_authorize_path, class: "btn btn-social-icon btn-github" %>
+
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <p><%= f.label :icon_image %></p>
-    <p><%= f.file_field :icon_image, id: :user_icon_image %></p>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div><hr>

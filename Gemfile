@@ -21,6 +21,8 @@ gem 'omniauth-github'
 
 gem 'acts-as-taggable-on'
 
+gem 'font-awesome-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
 # Use postgresql as the database for Active Record

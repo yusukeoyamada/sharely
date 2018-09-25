@@ -1,9 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user_and_user_points, only: [:show, :questions, :answers]
 
-  def index
-  end
-
   def show
   end
 

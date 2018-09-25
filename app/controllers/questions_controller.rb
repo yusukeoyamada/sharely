@@ -9,7 +9,7 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @questions = Question.all
+    @questions = Question.all.order("created_at DESC")
   end
 
   def show

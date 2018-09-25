@@ -1,19 +1,23 @@
-<h1>投稿一覧</h1>
-
-<table>
-  <tr>
-    <th>投稿者名</th>
-    <th>タイトル</th>
-  </tr>
-
-  <% @reports.each do |report| %>
-      <tr>
-        <td><%= report.user.name%></td>
-        <td><%= link_to report.title, report_path(report.id) %></td>
-      </tr>
-  <% end %>
-</table>
-
-<br>
-
-<%= link_to '投稿する', new_report_path %>
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <!-- 記事投稿用 -->
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <h1>記事一覧</h1>
+      <hr><hr>
+      <% @reports.each do |report| %>
+        <div class="post-preview">
+          <h2>投稿者：<%= link_to report.user.name, "/users/#{report.user.id}" %></h2>
+          <h3 class="post-title">
+            タイトル：<%= link_to report.title, report_path(report) %>
+          </h3>
+          <p class="post-meta"><%= report.created_at %></p>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="btn-center">
+  <h3><%= link_to '投稿する', new_report_path %></h3>
+</div><hr>

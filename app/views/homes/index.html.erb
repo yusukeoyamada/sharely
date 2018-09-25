@@ -1,2 +1,37 @@
-<h1>Homes#index</h1>
-<p>Find me in app/views/homes/index.html.erb</p>
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <!-- 記事投稿用 -->
+    <div class="col-lg-5 col-md-6 mx-auto">
+      <h1>記事一覧</h1>
+      <hr><hr>
+      <% @reports.each do |report| %>
+        <div class="post-preview">
+          <h2>投稿者：<%= report.user.name%></h2>
+          <h3 class="post-title">
+            タイトル：<%= link_to report.title, report_path(report) %>
+          </h3>
+          <p class="post-meta"><%= report.created_at %></p>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+    <!-- 質問投稿用 -->
+    <div class="col-lg-5 col-md-6 mx-auto">
+      <h1>質問一覧</h1>
+      <hr><hr>
+      <% @questions.each do |question| %>
+        <div class="post-preview">
+          <h2>質問者：<%= question.user.name%></h2>
+          <h3 class="post-title">
+            タイトル：<%= link_to question.title, question_path(question) %>
+          </h3>
+          <p class="post-meta"><%= question.created_at %></p>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<hr>

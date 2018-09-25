@@ -10,12 +10,14 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :content %>
+  <div class="field">
+    <%= form.label :content, "回答内容" %><br>
     <%= form.text_area :content %>
   </div>
 
-  <div>
+  <div class="actions">
     <%= form.submit "回答する"%>
   </div>
 <% end %>
+
+<hr>

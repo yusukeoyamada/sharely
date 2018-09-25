@@ -1,38 +1,47 @@
+<!-- Main Content -->
 <div class="container">
-  <%= form_with(model: @question, local: true, url: choose_new_or_edit_question) do |form| %>
-    <% if @question.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= @question.errors.count %>件のエラーがあります。</h2>
-        <ul>
-          <% @question.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+  <div class="row">
+    <div class="col-lg-6 col-md-7 mx-auto">
+      <%= form_with(model: @question, local: true, url: choose_new_or_edit_question) do |form| %>
+        <% if @question.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= @question.errors.count %>件のエラーがあります。</h2>
+            <ul>
+              <% @question.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-    <div>
-      <%= form.label :title %>
-      <%= form.text_field :title %>
-    </div>
-    <div>
-      <%= form.label :relation_words, "関連タグ" %><br>
-      <%= text_field_tag 'question[relation_word_list]', @question.relation_word_list.join(','), "data-role" => "tagsinput" %>
-    </div>
-    <div>
-      <%= form.label :content %>
-      <%= form.text_field :content %>
-    </div>
-    <div>
-      <p><%= form.label :image %></p>
-      <p><%= form.file_field :image, id: :question_image %></p>
-      <%= image_tag(@question.image) if @question.image.present? %>
-      <%= form.hidden_field :image_cache %>
-    </div>
-    <%= form.submit "質問" %>
-  <% end %>
+        <div class="field"><hr>
+          <%= form.label :title, "タイトル" %><br>
+          <%= form.text_field :title %>
+        </div><hr>
 
-  <br>
+        <div class="field">
+          <%= form.label :relation_words, "関連タグ（カンマ区切り）" %><br>
+          <%= text_field_tag 'question[relation_word_list]', @question.relation_word_list.join(','), "data-role" => "tagsinput" %>
+        </div><hr>
 
-  <%= link_to "質問一覧画面にもどる", questions_path %>
-</div>
+        <div class="field">
+          <%= form.label :content, "質問内容" %><br>
+          <%= form.text_field :content %>
+        </div><hr>
+
+        <div class="field">
+          <p><%= form.label :image, "投稿画像" %></p>
+          <p><%= form.file_field :image, id: :question_image %></p>
+          <%= image_tag(@question.image) if @question.image.present? %>
+          <%= form.hidden_field :image_cache %>
+        </div><hr>
+
+        <div class="actions">
+          <%= form.submit "質問" %>
+        </div>
+
+      <% end %><br>
+      <%= link_to "質問一覧画面にもどる", questions_path %>
+    </div>
+  </div>
+</div><hr>

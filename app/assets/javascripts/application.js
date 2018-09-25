@@ -10,9 +10,12 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery/dist/jquery.js
+//= require bootstrap/dist/js/bootstrap
+//= require bootstrap-tagsinput.min
+//= require contact_me
+//= require sharely
+//= require jqBootstrapValidation
 //= require rails-ujs
 //= require turbolinks
-//= require jquery/dist/jquery.js
-//= require bootstrap/dist/js/bootstrap.min
-//= require bootstrap-tagsinput.min
 //= require_tree .
