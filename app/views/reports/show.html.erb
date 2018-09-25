@@ -1,30 +1,37 @@
-<h1>投稿詳細画面</h1>
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-md-7 mx-auto">
+      <div class="post-preview">
+        <h1>投稿詳細画面</h1>
 
-<p>投稿者名: <%= @report.user.name %></p>
-<p>
-  <%= image_tag(@report.image) %>
-</p>
-<p>タイトル: <%= @report.title %></p>
-<p>関連タグ:<%= render 'reports/tag_list', tag_list: @report.relation_word_list %></p>
-<p>内容: <%= @report.content %></p>
+        <p>投稿者名:：<%= @report.user.name %></p>
+        <p>
+          <%= image_tag(@report.image) if @report.image.present? %>
+        </p>
+        <p>タイトル：<%= @report.title %></p>
+        <p>関連タグ：<%= render 'reports/tag_list', tag_list: @report.relation_word_list %></p>
+        <p>内容：<%= @report.content %></p>
 
-<% if @report.user == current_user %>
-  <p><%= link_to '編集', edit_report_path(@report.id) %></p>
-  <p><%= link_to '削除', report_path(@report.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></p>
-<% end %>
+        <% if @report.user == current_user %>
+          <p><%= link_to '編集', edit_report_path(@report.id) %></p>
+          <p><%= link_to '削除', report_path(@report.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></p>
+        <% end %>
 
-<% unless @report.user_id == current_user.id %>
-  <% if @fav_rpts.present? %>
-    <%= link_to fav_rpt_path(id: @fav_rpts.id), method: :delete do %>
-      <span class="fa fa-heart like-btn-unlike"></span>
-    <% end %>
-  <% else %>
-    <%= link_to fav_rpts_path(report_id: @report.id), method: :post do %>
-      <span class="fa fa-heart like-btn"></span>
-    <% end %>
-  <% end %>
-<% end %>
+        <% unless @report.user_id == current_user.id %>
+          <% if @fav_rpts.present? %>
+            <%= link_to fav_rpt_path(id: @fav_rpts.id), method: :delete do %>
+              <span class="fa fa-heart like-btn-unlike"></span>
+            <% end %>
+          <% else %>
+            <%= link_to fav_rpts_path(report_id: @report.id), method: :post do %>
+              <span class="fa fa-heart like-btn"></span>
+            <% end %>
+          <% end %>
+        <% end %><br><br>
 
-<br>
-
-<%= link_to "投稿一覧画面にもどる", reports_path %>
+        <%= link_to "投稿一覧画面にもどる", reports_path %>
+      </div>
+    </div>
+  </div>
+</div><hr>

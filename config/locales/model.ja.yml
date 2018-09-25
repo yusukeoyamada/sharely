@@ -1,12 +1,20 @@
 ja:
   activerecord:
     models:
-      blog: "ブログ"
+      answer: "回答"
+      question: "質問"
+      report: "記事"
       user: "ユーザー"
     attributes:
-      blog:
+      answer:
         title: "タイトル"
         content: "内容"
+      question:
+        title: "タイトル"
+        content: "内容"
+      report:
+        title: "タイトル"
+        content: "内容"     
       contact:
         name: "名前"
         email: "メールアドレス"

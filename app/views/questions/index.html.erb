@@ -1,19 +1,24 @@
-<h1>質問一覧</h1>
-
-<table>
-  <tr>
-    <th>質問者名</th>
-    <th>タイトル</th>
-  </tr>
-
-  <% @questions.each do |question| %>
-      <tr>
-        <td><%= question.user.name%></td>
-        <td><%= link_to question.title, question_path(question.id) %></td>
-      </tr>
-  <% end %>
-</table>
-
-<br>
-
-<%= link_to '質問する', new_question_path %>
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <!-- 質問投稿用 -->
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <h1>質問一覧</h1>
+      <hr><hr>
+      <% @questions.each do |question| %>
+        <div class="post-preview">
+          <h2>質問者：<%= link_to question.user.name, "/users/#{question.user.id}" %></h2>
+          <h3 class="post-title">
+            タイトル：<%= link_to question.title, question_path(question) %>
+          </h3>
+          <p class="post-meta"><%= question.created_at %></p>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="btn-center">
+  <h3><%= link_to '質問する', new_question_path %><h3>
+</div>
+<hr>

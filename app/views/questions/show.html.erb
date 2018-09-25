@@ -1,41 +1,51 @@
-<h1>質問画面</h1>
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-md-7 mx-auto">
+      <div class="post-preview">
+        <h1>質問画面</h1>
+        <hr><hr>
 
-<p>質問者名: <%= @question.user.name %></p>
-<p>
-  <%= image_tag(@question.image) %>
-</p>
-<p>タイトル: <%= @question.title %></p>
-<p>関連タグ:<%= render 'questions/tag_list', tag_list: @question.relation_word_list %></p>
-<p>内容: <%= @question.content %></p>
+        <p>質問者名：<%= @question.user.name %></p>
+        <p>
+          <%= image_tag(@question.image) if @question.image.present? %>
+        </p>
+        <p>タイトル：<%= @question.title %></p>
+        <p>関連タグ：<%= render 'questions/tag_list', tag_list: @question.relation_word_list %></p>
+        <p>内容：<%= @question.content %></p>
 
-<% if @question.user == current_user %>
-  <p><%= link_to '編集', edit_question_path(@question.id) %></p>
-  <p><%= link_to '削除', question_path(@question.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></p>
-<% end %>
+        <% if @question.user == current_user %>
+          <p><%= link_to '編集', edit_question_path(@question.id) %></p>
+          <p><%= link_to '削除', question_path(@question.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></p>
+        <% end %>
 
-<% unless @question.user_id == current_user.id %>
-  <% if @fav_ques.present? %>
-    <%= link_to fav_que_path(id: @fav_ques.id), method: :delete do %>
-      <span class="fa fa-heart like-btn-unlike"></span>
-    <% end %>
-  <% else %>
-    <%= link_to fav_ques_path(question_id: @question.id), method: :post do %>
-      <span class="fa fa-heart like-btn"></span>
-    <% end %>
-  <% end %>
-<% end %>
+        <% unless @question.user_id == current_user.id %>
+          <% if @fav_ques.present? %>
+            <%= link_to fav_que_path(id: @fav_ques.id), method: :delete do %>
+              <span class="fa fa-heart like-btn-unlike"></span>
+            <% end %>
+          <% else %>
+            <%= link_to fav_ques_path(question_id: @question.id), method: :post do %>
+              <span class="fa fa-heart like-btn"></span>
+            <% end %>
+          <% end %>
+        <% end %>
 
-<br>
+        <br><hr>
 
-<p>回答一覧</p>
-<div id="answers_area">
-  <!-- 回答一覧を質問の詳細ページに表示するためのrender -->
-  <%= render partial: 'answers/index', locals: { answers: @answers, question: @question } %>
-</div>
+        <h3>回答一覧</h3>
+        <div id="answers_area">
+          <!-- 回答一覧を質問の詳細ページに表示するためのrender -->
+          <%= render partial: 'answers/index', locals: { answers: @answers, question: @question } %>
+        </div>
 
-<!-- 回答入力欄を質問の詳細ページに表示するためのrender -->
-<%= render partial: 'answers/form', locals: { answer: @answer, question: @question } %>
+        <!-- 回答入力欄を質問の詳細ページに表示するためのrender -->
+        <%= render partial: 'answers/form', locals: { answer: @answer, question: @question } %>
 
-<br>
+        <br>
 
-<%= link_to "質問一覧画面にもどる", questions_path %>
+        <%= link_to "質問一覧画面にもどる", questions_path %>
+      </div>
+    </div>
+  </div>
+</div><hr>

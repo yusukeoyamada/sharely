@@ -1,24 +1,31 @@
-<h3>以下の内容で、投稿しますか？</h3>
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-md-7 mx-auto">
+      <h3>以下の内容で、投稿しますか？</h3><hr><hr>
 
-<%= form_with(model: @report, url: reports_path, local: true) do |form| %>
-  <%= form.hidden_field :title %>
-  <%= form.hidden_field :content %>
-  <%= hidden_field_tag 'report[relation_word_list]', @report.relation_word_list.join(',') %>
-  <%= hidden_field_tag :"cache[image]", @report.image.cache_name %>
+      <%= form_with(model: @report, url: reports_path, local: true) do |form| %>
+        <%= form.hidden_field :title %>
+        <%= form.hidden_field :content %>
+        <%= hidden_field_tag 'report[relation_word_list]', @report.relation_word_list.join(',') %>
+        <%= hidden_field_tag :"cache[image]", @report.image.cache_name %>
 
-  <p>タイトル:<%= @report.title %></p>
-  <p>本文:<%= @report.content %></p>
-  <p>関連タグ:<%= render 'reports/tag_list', tag_list: @report.relation_word_list %></p>
-  <p>
-    <%= image_tag(@report.image) if @report.image.present? %>
-  </p>
-  <%= form.submit  "投稿する" %>
-<% end %>
+        <p>タイトル：<%= @report.title %></p><hr>
+        <p>本文：<%= @report.content %></p><hr>
+        <p>関連タグ：<%= render 'reports/tag_list', tag_list: @report.relation_word_list %></p><hr>
+        <p>
+          <%= image_tag(@report.image) if @report.image.present? %>
+        </p>
+        <%= form.submit  "投稿する" %>
+      <% end %>
 
-<%= form_with(model: @report, url: new_report_path, local: true, method: 'get') do |form| %>
-  <%= form.hidden_field :title %>
-  <%= form.hidden_field :content %>
-  <%= hidden_field_tag 'report[relation_word_list]', @report.relation_word_list.join(',') %>
-  <%= hidden_field_tag :"cache[image]", @report.image.cache_name %>
-  <%= form.submit "戻る", name: 'back' %>
-<% end %>
+      <%= form_with(model: @report, url: new_report_path, local: true, method: 'get') do |form| %>
+        <%= form.hidden_field :title %>
+        <%= form.hidden_field :content %>
+        <%= hidden_field_tag 'report[relation_word_list]', @report.relation_word_list.join(',') %>
+        <%= hidden_field_tag :"cache[image]", @report.image.cache_name %>
+        <%= form.submit "戻る", name: 'back' %>
+      <% end %>
+    </div>
+  </div>
+</div><hr>

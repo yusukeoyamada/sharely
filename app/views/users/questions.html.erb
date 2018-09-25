@@ -1,0 +1,40 @@
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-md-9 mx-auto">
+      <p>
+        <%= image_tag(@user.icon_image) if @user.icon_image.present? %>
+      </p>
+      <h4><%= @user.name %>のページ</h4>
+      <p>メールアドレス: <%= @user.email %></p>
+      <p>ユーザー貢献度: <%= @user_points %> points</p>
+      <p>
+        <%= link_to 'ユーザー情報を編集', edit_user_registration_path(@user.id) %>
+      </p>
+    </div>
+  </div><hr>
+  <div class="row">
+    <div class="col-lg-3 col-md-4 mx-auto">
+      <li><%= link_to '投稿した記事', "/users/#{@user.id}" %></li><hr>
+    </div>
+    <div class="col-lg-3 col-md-4 mx-auto">
+      <li><%= link_to '投稿した質問', "/users/#{@user.id}/questions" %></li><hr>
+      <% @user.questions.each do |question| %>
+        <div>
+          <div>
+            <!-- <%= image_tag(@user.icon_image) if @user.icon_image.present? %> -->
+          </div>
+          <div>
+            <div>
+              質問者：<%= link_to question.user.name, "/users/#{question.user.id}" %>
+            </div>
+            タイトル：<%= link_to question.title, "/questions/#{question.id}" %>
+          </div>
+        </div><hr>
+      <% end %>
+    </div>
+    <div class="col-lg-3 col-md-4 mx-auto">
+      <li><%= link_to '回答した質問', "/users/#{@user.id}/answers" %></li><hr>
+    </div>
+  </div>
+</div><hr>
