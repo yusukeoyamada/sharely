@@ -27,12 +27,12 @@ class ReportsController < ApplicationController
 
   def destroy
     @report.destroy
-    redirect_to reports_path, notice:"質問を削除しました！"
+    redirect_to reports_path, notice:"記事を削除しました！"
   end
 
   def update
     if @report.update(report_params)
-      redirect_to reports_path, notice: "質問を編集しました！"
+      redirect_to reports_path, notice: "記事を編集しました！"
     else
       render 'edit'
     end
@@ -44,7 +44,7 @@ class ReportsController < ApplicationController
     @report.image.retrieve_from_cache!  params[:cache][:image] if params[:cache][:image].present?
   else
     if @report.save
-      redirect_to reports_path, notice: "質問しました！"
+      redirect_to reports_path, notice: "記事を投稿しました！"
     else
       render 'new'
     end

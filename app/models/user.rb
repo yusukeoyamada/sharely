@@ -70,8 +70,9 @@ class User < ApplicationRecord
     user_points = number_of_reports * 30 + number_of_answers * 30 + number_of_questions * 10
   end
 
-  validates_uniqueness_of :name
-  validates_presence_of :name
+  validates :name, presence: true, uniqueness: true, length:{maximum: 30}
+  validates :email, presence: true, uniqueness: true, length:{maximum: 80} , format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+  validates :password, presence: true, length: {minimum: 6}
 
   has_many :questions, dependent: :destroy
   has_many :reports, dependent: :destroy
