@@ -1,5 +1,4 @@
 class QuestionImageUploader < CarrierWave::Uploader::Base
-
   process :resize_to_limit => [300, 300]
 
   # Include RMagick or MiniMagick support:

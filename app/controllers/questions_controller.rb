@@ -52,12 +52,13 @@ class QuestionsController < ApplicationController
   end
 
   private
-    def question_params
-      params.require(:question).permit(:title,
-        :content, :image, :image_cache, :relation_word_list)
-    end
+  
+  def question_params
+    params.require(:question).permit(:title,
+      :content, :image, :image_cache, :relation_word_list)
+  end
 
-    def set_question
-      @question = Question.find(params[:id])
-    end
+  def set_question
+    @question = Question.find(params[:id])
+  end
 end

@@ -2,7 +2,7 @@
   <% answers.each do |answer| %>
     <% if answer.id.present? %>
       <li>
-        <p>回答者名：<%= answer.user.name %></p>
+        <p>回答者名：<%= link_to answer.user.name, "/users/#{answer.user.id}" %></p>
         <p>回答内容：<%= answer.content %></p>
       </li>
     <% end %>

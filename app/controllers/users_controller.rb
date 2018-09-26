@@ -12,9 +12,10 @@ class UsersController < ApplicationController
   end
 
   private
-    def set_user_and_user_points
-     @user = User.find(params[:id])
-     @user_points = @user.calculate_point
-    end
+
+  def set_user_and_user_points
+    @user = User.find(params[:id])
+    @user_points = @user.calculate_point
+  end
 
 end

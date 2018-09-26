@@ -1,5 +1,4 @@
 class AnswersController < ApplicationController
-
   before_action :ensure_correct_user
 
   def create
@@ -17,14 +16,15 @@ class AnswersController < ApplicationController
   end
 
   private
-    def answer_params
-      params.require(:answer).permit(:question_id, :content)
-    end
+  
+  def answer_params
+    params.require(:answer).permit(:question_id, :content)
+  end
 
-    def ensure_correct_user
-      @question = Question.find(params[:question_id])
-      if current_user.id == @question.user.id
-        redirect_to question_path(@question.id), notice: '権限がありません'
-      end
+  def ensure_correct_user
+    @question = Question.find(params[:question_id])
+    if current_user.id == @question.user.id
+      redirect_to question_path(@question.id), notice: '権限がありません'
     end
+  end
 end

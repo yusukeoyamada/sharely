@@ -24,17 +24,12 @@
       <li><%= link_to '回答した質問', "/users/#{@user.id}/answers" %></li><hr>
       <% if @answers != nil %>
         <% @answers.each do |answer| %>
-          <div>
-            <div>
-              <!-- <%= image_tag(@user.icon_image) if @user.icon_image.present? %> -->
-            </div>
-            <div>
-              <div>
-                質問者：<%= link_to answer.question.user.name, "/users/#{answer.question.user.id}" %>
-              </div>
-              タイトル：<%= link_to answer.question.title, "/questions/#{answer.question.id}" %>
-            </div>
-          </div><hr>
+          <!-- TODO アイコン表示未実装の為、一時コメントアウト
+            <%= image_tag(@user.icon_image) if @user.icon_image.present? %>
+          -->
+          <p>質問者：<%= link_to answer.question.user.name, "/users/#{answer.question.user.id}" %></p>
+          <p>タイトル：<%= link_to answer.question.title, "/questions/#{answer.question.id}" %></p>
+          <hr>
         <% end %>
       <% end %>
     </div>

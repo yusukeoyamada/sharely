@@ -42,7 +42,6 @@ class ReportsController < ApplicationController
     @report = Report.new(report_params)
     @report.user_id = current_user.id
     @report.image.retrieve_from_cache!  params[:cache][:image] if params[:cache][:image].present?
-  else
     if @report.save
       redirect_to reports_path, notice: "記事を投稿しました！"
     else
@@ -51,13 +50,14 @@ class ReportsController < ApplicationController
   end
 
   private
-    def report_params
-      params.require(:report).permit(:title,
-        :content, :image, :image_cache, :relation_word_list)
-    end
+  
+  def report_params
+    params.require(:report).permit(:title,
+      :content, :image, :image_cache, :relation_word_list)
+  end
 
-    def set_report
-      @report = Report.find(params[:id])
-    end
+  def set_report
+    @report = Report.find(params[:id])
+  end
 
 end

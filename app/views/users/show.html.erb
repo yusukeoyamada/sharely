@@ -8,24 +8,21 @@
       <h4><%= @user.name %>のページ</h4>
       <p>メールアドレス：<%= @user.email %></p>
       <p>ユーザー貢献度：<%= @user_points %> points</p>
-      <%= link_to 'ユーザー情報を編集', edit_user_registration_path(@user.id) %>
+      <p>
+        <%= link_to 'ユーザー情報を編集', edit_user_registration_path(@user.id) %>
+      </p>
     </div>
   </div><hr>
   <div class="row">
     <div class="col-lg-3 col-md-4 mx-auto">
       <li><%= link_to '投稿した記事', "/users/#{@user.id}" %></li><hr>
       <% @user.reports.each do |report| %>
-        <div>
-          <div>
-            <!-- <%= image_tag(@user.icon_image) if @user.icon_image.present? %> -->
-          </div>
-          <div>
-            <div>
-              投稿者：<%= link_to report.user.name, "/users/#{report.user.id}" %>
-            </div>
-            タイトル：<%= link_to report.title, "/reports/#{report.id}" %>
-          </div>
-        </div><hr>
+        <!-- TODO アイコン表示未実装の為、一時コメントアウト
+          <%= image_tag(@user.icon_image) if @user.icon_image.present? %>
+        -->
+        <p>投稿者：<%= link_to report.user.name, "/users/#{report.user.id}" %></p>
+        <p>タイトル：<%= link_to report.title, "/reports/#{report.id}" %></p>
+        <hr>
       <% end %>
     </div>
     <div class="col-lg-3 col-md-4 mx-auto">

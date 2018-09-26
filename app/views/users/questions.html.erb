@@ -20,17 +20,12 @@
     <div class="col-lg-3 col-md-4 mx-auto">
       <li><%= link_to '投稿した質問', "/users/#{@user.id}/questions" %></li><hr>
       <% @user.questions.each do |question| %>
-        <div>
-          <div>
-            <!-- <%= image_tag(@user.icon_image) if @user.icon_image.present? %> -->
-          </div>
-          <div>
-            <div>
-              質問者：<%= link_to question.user.name, "/users/#{question.user.id}" %>
-            </div>
-            タイトル：<%= link_to question.title, "/questions/#{question.id}" %>
-          </div>
-        </div><hr>
+        <!-- TODO アイコン表示未実装の為、一時コメントアウト
+          <%= image_tag(@user.icon_image) if @user.icon_image.present? %>
+        -->
+        <p>質問者：<%= link_to question.user.name, "/users/#{question.user.id}" %></p>
+        <p>タイトル：<%= link_to question.title, "/questions/#{question.id}" %></p>
+        <hr>
       <% end %>
     </div>
     <div class="col-lg-3 col-md-4 mx-auto">

@@ -3,8 +3,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-       :recoverable, :rememberable, :validatable,
-       :omniauthable, omniauth_providers: %i(google facebook github)
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: %i(google facebook github)
 
   def self.create_unique_string
     SecureRandom.uuid
@@ -19,7 +19,7 @@ class User < ApplicationRecord
                       provider: auth.provider,
                       uid:      auth.uid,
                       password: Devise.friendly_token[0, 20]
-                      # icon_image: auth.info.image
+                      # TODO 画像投稿 icon_image: auth.info.image
       )
     end
     user.save
@@ -35,7 +35,7 @@ class User < ApplicationRecord
                       name:     auth.info.name,
                       email:    User.dummy_email(auth),
                       password: Devise.friendly_token[0, 20]
-                      # icon_image: auth.info.image
+                      # TODO 画像投稿 icon_image: auth.info.image
       )
     end
     user.save
@@ -51,7 +51,7 @@ class User < ApplicationRecord
                       name:     auth.info.name,
                       email:    User.dummy_email(auth),
                       password: Devise.friendly_token[0, 20]
-                      # icon_image: auth.info.image
+                      # TODO 画像投稿 icon_image: auth.info.image
       )
     end
     user.save
