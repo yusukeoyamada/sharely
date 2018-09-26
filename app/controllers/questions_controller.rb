@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:show, :new, :create, :edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def confirm
     @question = Question.new(question_params)
@@ -52,7 +53,7 @@ class QuestionsController < ApplicationController
   end
 
   private
-  
+
   def question_params
     params.require(:question).permit(:title,
       :content, :image, :image_cache, :relation_word_list)
@@ -60,5 +61,13 @@ class QuestionsController < ApplicationController
 
   def set_question
     @question = Question.find(params[:id])
+  end
+
+  def ensure_correct_user
+    @question = Question.find_by(id: params[:id])
+    if current_user.id != @question.user_id
+      flash[:notice] = "権限がありません"
+      redirect_to("/")
+    end
   end
 end

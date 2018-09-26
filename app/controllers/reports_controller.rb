@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:confirm, :show, :new, :create, :edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def confirm
     @report = Report.new(report_params)
@@ -50,7 +51,7 @@ class ReportsController < ApplicationController
   end
 
   private
-  
+
   def report_params
     params.require(:report).permit(:title,
       :content, :image, :image_cache, :relation_word_list)
@@ -58,6 +59,14 @@ class ReportsController < ApplicationController
 
   def set_report
     @report = Report.find(params[:id])
+  end
+
+  def ensure_correct_user
+    @report = Report.find_by(id: params[:id])
+    if current_user.id != @report.user_id
+      flash[:notice] = "権限がありません"
+      redirect_to("/")
+    end
   end
 
 end

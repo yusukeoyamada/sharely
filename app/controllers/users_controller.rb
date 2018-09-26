@@ -17,5 +17,4 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user_points = @user.calculate_point
   end
-
 end
