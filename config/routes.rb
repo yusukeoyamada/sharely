@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root :to =>'homes#index'
 
   # お問い合わせ関係
-  resources :contacts
+  resources :contacts, only: [:create, :new]
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
