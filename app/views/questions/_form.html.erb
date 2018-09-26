@@ -1,7 +1,7 @@
 <!-- Main Content -->
 <div class="container">
   <div class="row">
-    <div class="col-lg-6 col-md-7 mx-auto">
+    <div class="col-lg-8 col-md-9 mx-auto">
       <%= form_with(model: @question, local: true, url: choose_new_or_edit_question) do |form| %>
         <% if @question.errors.any? %>
           <div id="error_explanation">
@@ -26,7 +26,7 @@
 
         <div class="field">
           <%= form.label :content, "質問内容" %><br>
-          <%= form.text_field :content %>
+          <%= form.text_area :content, :size=>"64x30" %>
         </div><hr>
 
         <div class="field">
