@@ -25,6 +25,10 @@ gem 'font-awesome-rails'
 
 gem 'fog'
 
+gem 'rails_admin', '~> 1.3'
+
+gem 'cancancan', '~> 2.0'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
 # Use postgresql as the database for Active Record
